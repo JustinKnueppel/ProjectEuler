@@ -9,11 +9,11 @@ class Node:
         self.left = None
         self.right = None
 
-    def printlefts(self, node):
+    def getlefts(self, node):
         res = []
         res.append(node.left.data)
         if node.right:
-            res += self.printlefts(node.right)
+            res += self.getlefts(node.right)
         return res
 
     def getfactors(self, node):
@@ -25,7 +25,6 @@ class Node:
                 node.right = Node(node.data // i)
                 self.getfactors(node.right)
                 return node
-        print('returning after for loop')
 
 if __name__ == "__main__":
     n = Node(36)
@@ -36,5 +35,10 @@ if __name__ == "__main__":
     # print(n.right.right.left.data, n.right.right.right.data)
     # print(n.right.right.right.left.data)
 
-    print(list(n.printlefts(n)))
-
+    print(list(n.getlefts(n)))
+    l = {'a':1, 'b':2}
+    print(l)
+    m = {'c':3, 'd':4}
+    for i in m.keys():
+        l[i] = m[i]
+    print(l)
