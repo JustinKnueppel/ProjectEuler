@@ -41,3 +41,4 @@ def mergedict(factors, totals):
 # print(gettotal(getfinaldict(10)))
 print(gettotal(getfinaldict()))
 print(gettotal(getfinaldict(20)))
+print(gettotal(getfinaldict(100)))
