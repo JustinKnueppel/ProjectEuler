@@ -3,38 +3,29 @@
 
 # Find the sum of all the primes below two million.
 
-def countup(num):
-    #counts up from 1-infinity
-    i = num
-    while True:
-        i += 1
-        yield i
 
-def getprime(primes, num):
-    curnum = -1
-    for i in countup(num):
+def getprime(primes):
+    yield 2
+    curnum = 3
+    while True:
         add = True
-        for prime in primes:
-            if i % prime == 0:
+        for prime in primes: #only go up to n^.5
+            if curnum**.5 < prime:
+                break
+            if curnum % prime == 0:
                 add = False
                 break
         if add:
-            curnum = i
-            break
-    return curnum
+            yield curnum
+        curnum += 2
 
-curnum = 1
-sum = 0
-primes = []#2, 3, 5, 7]
-while curnum <= 2000000:
-    curnum = getprime(primes, curnum)
+primes = []
+for curnum in getprime(primes):
+    if curnum >= 2000000:
+        break
     print(curnum)
-    sum += curnum
     primes.append(curnum)
 print(primes[0])
-print(sum)
+print(primes[-1])
+print(sum(primes))
 
-#first prime - 2
-#last prime - 2000003
-# sum with last prime - 142915828925
-# sum without last prime (answer) = 142913828922
