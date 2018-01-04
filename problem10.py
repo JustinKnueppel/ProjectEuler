@@ -1,8 +1,7 @@
-# https://projecteuler.net/problem=7
+#https://projecteuler.net/problem=10
+# The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17.
 
-# By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13, we can see that the 6th prime is 13.
-
-# What is the 10 001st prime number?
+# Find the sum of all the primes below two million.
 
 def countup(num):
     #counts up from 1-infinity
@@ -24,12 +23,18 @@ def getprime(primes, num):
             break
     return curnum
 
-counter = 1
 curnum = 1
+sum = 0
 primes = []#2, 3, 5, 7]
-while counter <= 10001:
+while curnum <= 2000000:
     curnum = getprime(primes, curnum)
     print(curnum)
+    sum += curnum
     primes.append(curnum)
-    counter += 1
-print(primes[-1])
+print(primes[0])
+print(sum)
+
+#first prime - 2
+#last prime - 2000003
+# sum with last prime - 142915828925
+# sum without last prime (answer) = 142913828922
