@@ -15,3 +15,34 @@
 # NOTE: Once the chain starts the terms are allowed to go above one million.
 
 # Use dictionary to store previous lengths
+
+class Collatz:
+    def __init__(self):
+        self.storednums = {}
+
+    def getnextnum(self, num):
+        return num * 3 + 1 if num % 2 else num // 2
+
+    def getcollatz(self, orignum):
+        num = orignum
+        nums = []
+        while True:
+            if num in self.storednums.keys():
+                self.storednums[orignum] = len(nums) + self.storednums[num]
+                return self.storednums[orignum]
+            nums.append(num)
+            if num == 1:
+                self.storednums[orignum] = len(nums)
+                return self.storednums[orignum]
+            num = self.getnextnum(num)
+
+obj = Collatz()
+maxnum = 1000000
+maxlen = (0,0)
+for i in range(1, maxnum):
+    curnum = obj.getcollatz(i)
+    print(i)
+    if curnum > maxlen[1]:
+        maxlen = (i, curnum)
+
+print(maxlen)
