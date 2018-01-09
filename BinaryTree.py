@@ -13,6 +13,7 @@ class Node:
     def makegridnode(cls, side = 2):
         return cls((side, side))
 
+    ##  WORKING SOLN TO 15(RECURSIVE) -- won't run 20
     #used to find possible grid paths for problem 15
     def findgridpaths(self, node):
         if node.data == (0,0):
@@ -59,8 +60,12 @@ class Node:
 
 if __name__ == "__main__":
     print('running BinaryTree')
-    for i in range(1, 13):
-        nod = Node.makegridnode(i)
-        print(nod.data)
-        nod = nod.findgridpaths(nod)
-        print(nod.countheads(nod))
+    obj = Node((5, 5))
+    print(obj.data)
+    obj = obj.findgridpaths(obj)
+    print(obj.countheads(obj))
+    # for i in range(1, 13):
+    #     nod = Node.makegridnode(i)
+    #     print(nod.data)
+    #     nod = nod.findgridpaths(nod)
+    #     print(nod.countheads(nod))
