@@ -4,4 +4,12 @@
 
 # How many such routes are there through a 20×20 grid?
 
+# use binary tree and count the tips
+def gettrinum(num):
+    sum = 0
+    for i in range(1, num+1):
+        sum += i
+    return sum
 
+for i in range(1, 5 + 1):
+    print(gettrinum(i))
