@@ -36,8 +36,29 @@ class Node:
             counter += self.countgridheads(node.left)
         return counter
 
+import time
+# Use recursive binary tree will crash attempting 20, better math solution below
 
+# sizesq = 5
+# obj = Node((sizesq - 1, sizesq))
+# st2 = time.time()
+# obj = obj.getnumpaths(obj)
+# print(2 * obj.countgridheads(obj))
+# end2 = time.time()
+# dif2 = end2 - st2
+# print(dif2)
 
-obj = Node((20, 19))
-obj = obj.getnumpaths(obj)
-print(2 * obj.countgridheads(obj))
+def getposgrid(gridsize):
+    tally = [1] * gridsize
+    for i in range(gridsize):
+        for j in range(i):
+            tally[j] += tally[j-1]
+        tally[i] = 2 * tally[i-1]
+    return tally[gridsize - 1]
+
+for i in range(1, 21):
+    start = time.time()
+    print(getposgrid(i))
+    end = time.time() - start
+    print(end)
+
