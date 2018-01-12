@@ -12,28 +12,24 @@ class Node:
         self.right = None
 
     def getnumpaths(self, node):
-        if node.data == (0,0):
+        if node.data[0] == 0 or node.data[1] == 0:
+            node.left = None
+            node.right = None
             return node
         if node.data[0] is not 0:
             newn = Node((node.data[0]-1, node.data[1]))
-            print('making a left node')
             node.left = self.getnumpaths(newn)
-            print(node.left.data)
         if node.data[0] is not node.data[1] and node.data[1] is not 0:
             newn = Node((node.data[0], node.data[1]-1))
-            print('making a right node')
             node.right = self.getnumpaths(newn)
-            print(node.right.data)
             # Only make the right node if if the data is not a square
         return node
 
     def countgridheads(self, node):
-        #if node.left == None and node.right == None:
-        if node.data == (0,0):
+        if node.left == None and node.right == None:
             return 1
         counter = 0
         if node.data[0] == node.data[1]:
-            print(node.data, 'doubling tree')
             counter += 2 * self.countgridheads(node.left)
         elif node.left and node.right:
             counter += self.countgridheads(node.right)
@@ -42,6 +38,6 @@ class Node:
 
 
 
-obj = Node((3, 3))
+obj = Node((20, 19))
 obj = obj.getnumpaths(obj)
-print(obj.countgridheads(obj))
+print(2 * obj.countgridheads(obj))
