@@ -57,8 +57,9 @@ def getposgrid(gridsize):
     return tally[gridsize - 1]
 
 for i in range(1, 21):
+    print(i, 'x', i)
     start = time.time()
     print(getposgrid(i))
     end = time.time() - start
-    print(end)
+    print(end, 'seconds')
 
