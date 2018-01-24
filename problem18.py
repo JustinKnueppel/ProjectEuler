@@ -1,12 +1,12 @@
 # https://projecteuler.net/problem=18
 
 # By starting at the top of the triangle below and moving to adjacent numbers on the row below, the maximum total from top to bottom is 23.
-
-# 3
-# 7, 4
-# 2, 4, 6
-# 8, 5, 9, 3
-
+testnums = [
+[    3],
+[   7, 4],
+[  2, 4, 6],
+[ 8, 5, 9, 3]
+]
 # That is, 3 + 7 + 4 + 9 = 23.
 
 # Find the maximum total from top to bottom of the triangle below:
@@ -31,12 +31,20 @@ nums = [
 
 # NOTE: the valid numbers will have index equal to prev number, and " + 1
 # Binary Tree brute force solution
-class Node:
-    def __init__(self, data):
-        self.data = data
-        self.left = None
-        self.right = None
 
+class prob18:
+    def __init__(self, nums):
+        self.nums = nums
+        self.sums = []
 
-def makeTreeFromTriangle(node):
-    # find a way to use nums
+    def findsums(self, cursum, layer, index):
+        cursum += self.nums[layer][index]
+        if layer == len(self.nums) - 1:
+            self.sums.append(cursum)
+        else:
+            findsums(cursum, layer + 1, index)
+            findsums(cursum, layer + 1, index + 1)
+        return self.sums
+
+test = prob18(testnums)
+print(test.findsums(0, 0, 0))
