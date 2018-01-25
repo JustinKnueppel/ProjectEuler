@@ -21,17 +21,17 @@ def is_leap_year(year):
         return True
     return False
 
+DAYS_OF_WEEK = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
 MONTHS = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 START_YEAR = 1901
-def get_num_days(startYear, endYear):
+def get_num_days(start_year, end_year):
     """returns the number of days in a given range of years"""
     num_days = 0
-    for year in range(startYear, endYear):
+    for year in range(start_year, end_year):
         for month in range(len(MONTHS)):
             num_days += MONTHS[month]
         if  is_leap_year(year):
             num_days += 1
     return num_days
- 
 
 print(get_num_days(1900, 1901))
