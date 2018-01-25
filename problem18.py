@@ -42,9 +42,10 @@ class prob18:
         if layer == len(self.nums) - 1:
             self.sums.append(cursum)
         else:
-            findsums(cursum, layer + 1, index)
-            findsums(cursum, layer + 1, index + 1)
+            self.findsums(cursum, layer + 1, index)
+            self.findsums(cursum, layer + 1, index + 1)
         return self.sums
 
-test = prob18(testnums)
-print(test.findsums(0, 0, 0))
+test = prob18(nums)
+list = test.findsums(0, 0, 0)
+print(max(list))
