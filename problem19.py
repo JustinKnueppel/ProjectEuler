@@ -28,14 +28,11 @@ DAYS_OF_WEEK = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'
 MONTHS = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 START_YEAR = 1901
 DAY_COUNTER = 2 # Jan 1, 1901 was a Tuesday
-def get_num_days_year(start_year, end_year):
-    """returns the number of days in a given range of years [start, end)"""
+def get_num_days_year(year):
+    """returns the number of days in a given year"""
     num_days = 0
-    for year in range(start_year, end_year):
-        for month in enumerate(MONTHS):
-            num_days += month[1]
-        if  is_leap_year(year):
-            num_days += 1
+    for i in range(12):
+        num_days += get_num_days_month(i, year)
     return num_days
 
 def get_num_days_month(month, year):
