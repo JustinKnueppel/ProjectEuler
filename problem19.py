@@ -50,6 +50,14 @@ def get_day_of_week(month, year):
     day_counter += get_num_days_year(START_YEAR, year)
     for i in range(month):
         day_counter += get_num_days_month(i, year)
+    day_counter -= 1 #Corrects for starting the count at 1st day instead of 0th
     return DAYS_OF_WEEK[day_counter % 7]
 
-print(get_day_of_week(2, 1901))
+counter = 0
+for cur_year in range(1902, 2002):
+    print(cur_year - 1)
+    for cur_month in range(12):
+        if get_day_of_week(cur_month, cur_year) == DAYS_OF_WEEK[0]:
+            counter += 1
+        print(get_day_of_week(cur_month, cur_year))
+print(counter)
