@@ -41,10 +41,17 @@ def get_num_days_month(month, year):
         return MONTHS[1] + 1
     return MONTHS[month]
 
+def get_days_until(year, start_year = START_YEAR):
+    """Given a final year(inclusive), return the number of days since the starting year"""
+    count = 0
+    for cur_year in range(start_year, year + 1):
+        count += get_num_days_year(cur_year)
+    return count
+
 def get_day_of_week(month, year):
     """"Given a month and year, return the day of the week of the first of the given month"""
     day_counter = DAY_COUNTER
-    day_counter += get_num_days_year(START_YEAR, year)
+    day_counter += get_days_until(year)
     for i in range(month):
         day_counter += get_num_days_month(i, year)
     day_counter -= 1 #Corrects for starting the count at 1st day instead of 0th
