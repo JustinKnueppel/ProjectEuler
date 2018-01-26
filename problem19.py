@@ -47,10 +47,9 @@ def get_num_days_month(month, year):
 def get_day_of_week(month, year):
     """"Given a month and year, return the day of the week of the first of the given month"""
     day_counter = DAY_COUNTER
-    day_counter = get_num_days_year(START_YEAR, year)
+    day_counter += get_num_days_year(START_YEAR, year)
     for i in range(month):
         day_counter += get_num_days_month(i, year)
     return DAYS_OF_WEEK[day_counter % 7]
 
 print(get_day_of_week(2, 1901))
-print(MONTHS[0] + MONTHS[1] + 2)
