@@ -28,14 +28,11 @@ DAYS_OF_WEEK = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'
 MONTHS = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 START_YEAR = 1901
 DAY_COUNTER = 2 # Jan 1, 1901 was a Tuesday
-def get_num_days_year(start_year, end_year):
-    """returns the number of days in a given range of years [start, end)"""
+def get_num_days_year(year):
+    """returns the number of days in a given year"""
     num_days = 0
-    for year in range(start_year, end_year):
-        for month in enumerate(MONTHS):
-            num_days += month[1]
-        if  is_leap_year(year):
-            num_days += 1
+    for i in range(12):
+        num_days += get_num_days_month(i, year)
     return num_days
 
 def get_num_days_month(month, year):
@@ -44,13 +41,26 @@ def get_num_days_month(month, year):
         return MONTHS[1] + 1
     return MONTHS[month]
 
+def get_days_until(year, start_year=START_YEAR):
+    """Given a final year(exclusive), return the number of days since the starting year"""
+    count = 0
+    for cur_year in range(start_year, year):
+        count += get_num_days_year(cur_year)
+    return count
+
 def get_day_of_week(month, year):
     """"Given a month and year, return the day of the week of the first of the given month"""
     day_counter = DAY_COUNTER
-    day_counter = get_num_days_year(START_YEAR, year)
+    day_counter += get_days_until(year)
     for i in range(month):
         day_counter += get_num_days_month(i, year)
     return DAYS_OF_WEEK[day_counter % 7]
 
-print(get_day_of_week(2, 1901))
-print(MONTHS[0] + MONTHS[1] + 2)
+counter = 0
+for cur_year in range(1901, 2001):
+    print(cur_year)
+    for cur_month in range(12):
+        if get_day_of_week(cur_month, cur_year) == DAYS_OF_WEEK[0]:
+            counter += 1
+        print(get_day_of_week(cur_month, cur_year))
+print(counter)
