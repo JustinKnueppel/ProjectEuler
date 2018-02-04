@@ -12,9 +12,24 @@ def get_factors(num):
     """Given a number, return all factors in a list - not 1 or sqrt"""
     factors = [1]
     for i in range(2, int(num ** .5)):
-        if num % i is 0:
+        if num % i == 0:
             factors.append(i)
             factors.append(num // i)
     return factors
 
-print(sum(get_factors(220)))
+def is_amicable(num):
+    """returns true if the number is an amicable number"""
+    first_sum = sum(get_factors(num))
+    if num == sum(get_factors(first_sum)) and num != first_sum:
+        return True
+    return False
+
+amicable_numbers = []
+for i in range(2, 10000):
+    if is_amicable(i) and i not in amicable_numbers:
+        amicable_numbers.append(i)
+print(sum(amicable_numbers))
+print(is_amicable(220))
+print(is_amicable(284))
+print(get_factors(220), sum(get_factors(220)))
+print(get_factors(284), sum(get_factors(284)))
