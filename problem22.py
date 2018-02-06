@@ -33,7 +33,7 @@ def get_names(file_name):
         text = "".join(file.readlines)
         matches = name_regex.findall(text)
         for match in matches:
-            names.append(match[1])
+            names.append(match[2])
     except:
         print("File could not be used")
     finally:
