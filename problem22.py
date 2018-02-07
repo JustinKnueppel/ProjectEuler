@@ -22,6 +22,7 @@ def score_name(name):
     """returns the lexiographic score of a word"""
     total = 0
     for letter in name:
+        letter = letter.lower()
         total += ALPHA.find(letter) + 1
     return total
 
@@ -30,11 +31,23 @@ def get_names(file_name):
     names = []
     try:
         file = open(file_name)
-        text = "".join(file.readlines)
+        lines = file.readlines()
+        text = "".join(lines)
         matches = name_regex.findall(text)
         for match in matches:
             names.append(match[2])
     except:
-        print("File could not be used")
+        print('error with file')
     finally:
         return names
+
+def get_total_score(sorted_names):
+    total = 0
+    for name in enumerate(sorted_names):
+        total += (name[0] + 1) * score_name(name[1])
+    return total
+
+FILE_NAME = r"problem022_names.txt"
+names = get_names(FILE_NAME)
+names.sort()
+print(get_total_score(names))
