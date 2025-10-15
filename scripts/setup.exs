@@ -17,7 +17,7 @@ build_out = fn number ->
     get_problem.(number)
     |> convert_html.()
 
-  "# Problem #{number}\n\n[Link](https://projecteuler.net/problem=#{number})\n\n#{md}"
+  "# Problem #{number}\n\n[Link](https://projecteuler.net/problem=#{number})\n\n#{md}\n"
 end
 
 get_dir = fn num ->
