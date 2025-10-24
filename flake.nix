@@ -28,7 +28,23 @@
         }:
         let
           tpl = pkgs.writeShellScriptBin "tpl" ''
-            cp -r "templates/$1" "$2"
+            find_nearest_flake() {
+              local current_dir=$(pwd)
+              local target_file="flake.nix"
+
+              while [ "$current_dir" != "/" ]; do
+                if [ -f "$current_dir/$target_file" ]; then
+                  echo "$current_dir"
+                  return
+                fi
+                current_dir=$(dirname "$current_dir")
+              done
+
+              # If no flake.nix is found, return the current directory
+              echo "$current_dir"
+            }
+
+            cp -r "$(find_nearest_flake)/templates/$1" "$2"
           '';
           run = pkgs.writeShellScriptBin "run" ''
             dune exec ./solution.exe
