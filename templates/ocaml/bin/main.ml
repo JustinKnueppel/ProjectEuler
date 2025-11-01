@@ -1,3 +1,3 @@
 open! Solution
 
-let () = ()
+let () = solve () |> Int.to_string |> print_endline

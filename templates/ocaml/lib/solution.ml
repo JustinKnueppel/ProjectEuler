@@ -1,1 +1,1 @@
-let solve () = ()
+let solve () = 0
